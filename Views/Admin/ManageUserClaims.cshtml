@@ -1,0 +1,46 @@
+﻿
+@model Service.DataLayer.Template.ViewModels.UserClaimsViewModel
+
+@{
+    ViewBag.Title = "صلاحيات النظام";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card shadow mb-5">
+    <form asp-controller="Admin" asp-action="ManageUserClaims" method="post">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">   تحديث صلاحيات شاشات المستخدم </h6>
+        </div>
+        <input type="hidden" asp-for="@Model.UserId" />
+      
+            <div class="card-body" style="display:flex; overflow-y: scroll; height:700px;">
+                <div class="row col-10">
+                    @for (int i = 0; i < Model.Cliams.Count; i++)
+                    {
+                        <div class="form-group col-md-4">
+                            <input type="hidden" asp-for="@Model.Cliams[i].ClaimType" />
+                            <label class="col-md-11 btn btn-default" style="text-align: right" asp-for="@Model.Cliams[i].IsSelected">
+                                <input asp-for="@Model.Cliams[i].IsSelected" class="col-md-1" style="min-height: 15px;" />
+                                @Model.Cliams[i].ClaimType
+                            </label>
+                        </div>
+                    }
+                </div>
+
+
+            </div>
+            <div class="card-footer mb-4">
+                <input type="submit" value="حفظ" class="btn btn-primary"
+                       style="width:auto" />
+                <a asp-action="EditUser" asp-route-id="@Model.UserId"
+                   class="btn btn-default" style="width:auto">إلغاء</a>
+            </div>
+        <br /><br />
+    </form>
+</div>
+
+
+
+<script src="/Scripts/moment-hijri/moment-hijri.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+

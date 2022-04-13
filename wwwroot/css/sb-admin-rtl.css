@@ -1,0 +1,159 @@
+@font-face {
+  font-family: "DINNext";
+  src: url("../vendor/fonts/DINNextLTArabic-Regular-2.eot");
+  src: url("../vendor/fonts/DINNextLTArabic-Regular-2.eot?#iefix") format("embedded-opentype"),
+    url("../vendor/fonts/DINNextLTArabic-Regular-2.otf") format("opentype"),
+    url("../vendor/fonts/DINNextLTArabic-Regular-2.svg") format("svg"),
+    url("../vendor/fonts/DINNextLTArabic-Regular-2.ttf") format("truetype"),
+    url("../vendor/fonts/DINNextLTArabic-Regular-2.woff") format("woff"),
+    url("../vendor/fonts/DINNextLTArabic-Regular-2.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body, h1, h2, h3, h4, h5, h6 {
+  font-family: "DINNext" !important;
+}
+
+body {
+  text-align: right;
+}
+
+.navbar-nav {
+  padding-right: 0;
+}
+
+.sidebar .nav-item .collapse {
+  right: calc(6.5rem + 1.5rem / 2);
+}
+
+@media (min-width: 768px) {
+  .sidebar .nav-item .collapse {
+    right: 0;
+  }
+
+  .sidebar .nav-item .nav-link {
+    text-align: right;
+  }
+
+  .sidebar .nav-item .nav-link[data-toggle=collapse]::after {
+    float: left;
+  }
+
+  .sidebar .nav-item .nav-link[data-toggle=collapse].collapsed::after {
+    content: '\f104';
+  }
+}
+
+.dropdown-menu {
+  text-align: right;
+}
+
+.dropdown-menu-right {
+  left: 0;
+  right: auto;
+}
+
+.topbar .dropdown .dropdown-menu {
+  width: calc(100% - 1.5rem);
+  left: .75rem;
+  right: auto;
+}
+
+@media (min-width: 576px) {
+  .topbar .dropdown .dropdown-menu {
+    width: auto;
+    right: auto;
+    left: 0;
+  }
+}
+
+.input-group>.input-group-append>.btn, .input-group>.input-group-append>.input-group-text, .input-group>.input-group-prepend:first-child>.btn:not(:first-child), .input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child), .input-group>.input-group-prepend:not(:first-child)>.btn, .input-group>.input-group-prepend:not(:first-child)>.input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: .35rem;
+  border-bottom-left-radius: .35rem;
+}
+
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-top-right-radius: .35rem;
+  border-bottom-right-radius: .35rem;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.page-item:last-child .page-link {
+  border-top-left-radius: .35rem;
+  border-bottom-left-radius: .35rem;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+div.table-responsive>div.dataTables_wrapper>div.row>div[class^=col-]:first-child {
+  padding-right: 0;
+}
+
+div.table-responsive>div.dataTables_wrapper>div.row>div[class^=col-]:last-child {
+  padding-left: 0;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-right: .5em;
+  margin-left: 0;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+  text-align: left;
+}
+
+table.dataTable>thead>tr>th:not(.sorting_disabled), table.dataTable>thead>tr>td:not(.sorting_disabled) {
+  padding-left: 30px;
+  padding: .75rem;
+}
+
+table.dataTable>thead .sorting:before, table.dataTable>thead .sorting_asc:before, table.dataTable>thead .sorting_desc:before, table.dataTable>thead .sorting_asc_disabled:before, table.dataTable>thead .sorting_desc_disabled:before {
+  left: 1em;
+  right: auto;
+}
+
+table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, table.dataTable>thead .sorting_desc:after, table.dataTable>thead .sorting_asc_disabled:after, table.dataTable>thead .sorting_desc_disabled:after {
+  left: .5em;
+  right: auto;
+}
+
+.card .card-header[data-toggle=collapse] {
+  padding: .75rem 1.25rem .75rem 3.25rem;
+}
+
+.card .card-header[data-toggle=collapse]::after {
+  left: 0;
+  right: auto;
+  padding-left: 1.725rem;
+  padding-right: 0;
+}
+
+.custom-control-label::before {
+  right: -1.5rem;
+  left: auto;
+}
+
+.custom-control {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+.custom-control-input {
+    right: 0;
+    left: auto;
+  }
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url("/img/loader.gif") 50% 50% no-repeat rgb(249,249,249);
+}

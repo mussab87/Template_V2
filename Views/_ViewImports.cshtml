@@ -1,0 +1,16 @@
+﻿@using Template
+@using Template.Models
+@using Template.Ressources
+@using Template.Filters
+@using Microsoft.AspNetCore.Identity
+@using Service.DataLayer.Security;
+@using Service.DataLayer;
+@using Microsoft.AspNetCore.Authorization;
+@inject SignInManager<ApplicationUser> signInManager;
+@inject Microsoft.AspNetCore.Authorization.IAuthorizationService Authoriation
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject IAuthorizationService AuthorizationService
+@using Template.Filters;
+@using Service.DataLayer.Models;
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.Extensions.Configuration.IConfiguration config;

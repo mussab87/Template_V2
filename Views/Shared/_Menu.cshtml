@@ -1,0 +1,156 @@
+﻿<!-- Page Wrapper -->
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center">
+
+        <img src="~/img/logo.png" width="120" height="100" style=" margin-top: 50px;" />
+    </a>
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" style=" padding-top: 0px; margin-top: 50px;">
+        @*<div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-fingerprint"></i>
+            </div>*@
+        <div class="sidebar-brand-text mx-3">
+            <h5 style="color:white; ">
+                @config["AppSetting:ApplicationName"]
+            </h5>
+        </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0" />
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" asp-controller="Home" asp-action="Home">
+            <i class="fas fa-fw fa-home"></i>
+            <span>الرئيسية</span>
+        </a>
+    </li>
+    @if (signInManager.IsSignedIn(User) && signInManager.Context.User.IsInRole(AppConstants.Role.Names.Admin_Role_Name))
+    {
+        <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#AppSetting"
+                   aria-expanded="true" aria-controls="lookup">
+                    <i class="fas fa-fw fa-pen"></i>
+                    <span>إعدادات النظام</span>
+                </a>
+                <div id="AppSetting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    @if (AuthorizationService.AuthorizeAsync(User, "AppSetting-AdminController").Result.Succeeded)
+                    {
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" asp-controller="Admin" asp-action="AppSetting">إضافة إعدادات للنظام</a>
+
+                        </div>
+                    }
+                    </div>
+            </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Machine"
+               aria-expanded="true" aria-controls="lookup">
+                <i class="fas fa-fw fa-table"></i>
+                <span>استيراد وتصدير الملفات</span>
+            </a>
+            <div id="Machine" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" asp-controller="Element" asp-action="ExcelExportAndPrint">تحميل ملف اكسل وطباعة</a>
+                    <a class="collapse-item" asp-controller="Element" asp-action="ExcelImportToDB">تصدير اكسل لقاعدة البيانات</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#EntryData"
+               aria-expanded="true" aria-controls="EntryData">
+                <i class="fas fa-user-cog"></i>
+                <span>التاريخ</span><span style="color:red"></span>
+            </a>
+            <div id="EntryData" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" asp-controller="Element" asp-action="DateElementTag">
+                        التاريخ
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#EmpDataa"
+               aria-expanded="true" aria-controls="EntryData">
+                <i class="fas fa-user-cog"></i>
+                <span>استرجاع بيانات الموظف</span><span style="color:red"></span>
+            </a>
+            <div id="EmpDataa" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" asp-controller="Element" asp-action="EmpData">
+                        استرجاع بيانات الموظف
+                    </a>
+                </div>
+            </div>
+        </li>
+    }
+    @if (signInManager.IsSignedIn(User) && signInManager.Context.User.IsInRole(AppConstants.Role.Names.Admin_Role_Name))
+    {
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Employee"
+               aria-expanded="true" aria-controls="Employee">
+                <i class="fas fa-user-cog"></i>
+                <span> إدارة المستخدمين</span><span style="color:red"></span>
+            </a>
+            <div id="Employee" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    @*@if (AuthorizationService.AuthorizeAsync(User, "ListUsers-AdminController").Result.Succeeded)
+                        {*@
+                    <a class="collapse-item" asp-controller="Admin" asp-action="ListUsers">المستخدمين</a>
+                    @*}*@
+                    @if (AuthorizationService.AuthorizeAsync(User, "ListRoles-AdminController").Result.Succeeded)
+                    {
+                        <a class="collapse-item" asp-controller="Admin" asp-action="ListRoles">الصلاحيات</a>
+                    }
+                    <a class="collapse-item" asp-controller="Admin" asp-action="AddNewAccount">إضافة مستخدم جديد</a>
+
+                    @*<a class="collapse-item" asp-controller="Transfer" asp-action="Create">طلب نقل <span style="color:red">جديد </span></a>
+                        <a class="collapse-item" asp-controller="Transfer" asp-action="Index">طلبات النقل <span style="color:red">جديد </span></a>*@
+
+                </div>
+            </div>
+        </li>
+    }
+    @if (signInManager.IsSignedIn(User) || signInManager.Context.User.IsInRole(AppConstants.Role.Names.Admin_Role_Name) || signInManager.Context.User.IsInRole(AppConstants.Role.Names.User_Role_Name))
+    {
+    }
+
+    @if (signInManager.IsSignedIn(User) || signInManager.Context.User.IsInRole(AppConstants.Role.Names.Admin_Role_Name) || signInManager.Context.User.IsInRole(AppConstants.Role.Names.User_Role_Name))
+    {
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Reports"
+               aria-expanded="true" aria-controls="Reports">
+                <i class="fas fa-fw fa-copy"></i>
+                <span> التقارير</span>
+                <span style="color:red"></span>
+
+            </a>
+            <div id="Reports" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" asp-controller="Reports" asp-action="DailyAttendance">الحضور والانصراف <span style="color:red">جديد </span></a>
+                    <a class="collapse-item" asp-controller="Reports" asp-action="DailyChart">الحضور والانصراف بياني <span style="color:red">جديد </span></a>
+
+                </div>
+            </div>
+        </li>
+    }
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+    
+
+</ul>
+

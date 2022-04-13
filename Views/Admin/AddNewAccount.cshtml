@@ -1,0 +1,99 @@
+﻿
+@model Service.DataLayer.Template.ViewModels.AccountViewModel
+
+@{ ViewBag.Title = "إضافة مستخدم";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+
+<h2 style="text-align:right">اضافة موظف</h2>
+<br />
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"> إضافة مستخدم جديد</h6>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col mr-9">
+            <form asp-controller="Admin" asp-action="AddNewAccount" class="row g-3" method="post">
+
+                <div class="row col-12">
+                    <div class="col-md-3">
+                        <div asp-validation-summary="All" class="text-danger" style="direction: rtl;text-align: right;"></div>
+                    </div>
+                    
+                </div>
+                <div class="row col-12">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="Username"></label>
+                        <input id="EmployeeName" class="form-control" asp-for="Username">
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row col-12">
+                    <div class="col-1">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label asp-for="Password"></label>
+                        <div class="input-group-prepend">
+                            <input asp-for="Password" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger" dir="rtl"></span>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <label asp-for="ConfirmPassword"></label>
+                        <div class="input-group-prepend">
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                        </div>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger" dir="rtl"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="row col-12" style="margin-top:50px">
+                    <div class="col-3"></div>
+                    <div class="col-3">
+                        <button id="submit" type="submit" class="btn btn-primary form-control">
+                            حفظ
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <a asp-controller="Employee" asp-action="Index" class="btn btn-outline-danger form-control">الغاء</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4 ">
+    <div class="card-header py-2">
+        <h6 class="m-0 font-weight-bold text-primary">ملاحضة :</h6>
+        <ul>
+            <li>
+               يمكن اضافة ملاحظات هنا
+            </li>
+            <li>
+                يمكن اضافة ملاحظات هنا
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="~/js/jquery.min.js"></script>

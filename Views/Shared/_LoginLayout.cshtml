@@ -1,0 +1,106 @@
+﻿
+<!DOCTYPE html>
+<html lang="ar">
+<partial name="_HeaderPartial" />
+<body  style="direction:ltr;margin-top:7%;background-color:#fff; text-align: right;">
+    @*<partial name="_NavBar" />*@
+
+    <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-12 col-md-12">
+            <div class="card o-hidden border-0 shadow-lg my-sm-5">
+                @RenderBody()
+            </div>
+            </div>
+        </div>
+
+                    <!--<div class="container-fluid p-0">
+                        <div class="row m-0">
+                            <div class="col-xl-5 b-center bg-size" style="background-image: url(~/assets/images/RslfLogo/MOD_LOGOTYPE_L_USE_ON_WHITE_RGB_LARGE.png&quot;);background-size: contain;background-repeat: no-repeat;background-position: center center;display: block;">
+                                <img class="bg-img-cover bg-center" width="50" height="20" src="~/assets/images/RslfLogo/MOD_LOGOTYPE_L_USE_ON_WHITE_RGB_LARGE.png" alt="looginpage" style="display: none;">
+                            </div>
+                            <div class="col-xl-7 p-0">
+                                <div class="login-card">-->
+                                    <!-- Loader starts-->
+                                    <!--<div class="loader-wrapper">
+                                        <div class="theme-loader">
+                                            <div class="loader-p"></div>
+                                        </div>
+                                    </div>
+                                    @RenderBody()
+                                </div>
+                                <footer>
+                                    <p>- @AppConstants.LayOut.Config.ApplicationName - &copy; جميع الحقوق محفوظة ................ @DateTime.Now.Year </p>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>-->
+
+                    @*<div class="container body-content">
+                            @RenderBody()
+                            <hr />
+                            <div class="col-md-12">
+                                <footer>
+                                    <p>- @AppConstants.LayOut.Config.ApplicationName - &copy; جميع الحقوق محفوظة ................ @DateTime.Now.Year </p>
+                                </footer>
+                            </div>
+                        </div>*@
+
+                    <partial name="_ScriptExtenstions" />
+
+                    @RenderSection("scripts", false)
+
+</body>
+</html>
+<script>
+
+    $(document).ready(function () {
+        //Remove Local Storage
+        if (localStorage.getItem('userConfirmPolicy') != null) {
+            //localStorage.removeItem('userConfirmPolicy');
+            //localStorage.setItem('userConfirmPolicy', null);
+            localStorage.setItem('userConfirmPolicy', '')
+        }
+
+    });
+    //$(document).ready(function () {
+    //    /*$('.datepicker').datepicker({ format: 'dd-mm-yyyy' });*/
+
+    //    //DISABLE right click
+    //    jQuery(this).bind("contextmenu", function (event) {
+    //        event.preventDefault();
+    //        bootbox.alert({
+    //            message: "Sorry, This Functionality Has Been Disabled",
+    //            className: 'rubberBand animated'
+    //        });
+    //    });
+
+    //    //disable Ctr + U + F12
+    //    $(document).keydown(function (event) {
+    //        var pressedKey = String.fromCharCode(event.keyCode).toLowerCase();
+    //        debugger;
+    //        if (event.ctrlKey && (pressedKey == "c" || pressedKey == "u" || pressedKey == "v")) {
+    //            //alert('Sorry, This Functionality Has Been Disabled!');
+    //            bootbox.alert({
+    //                message: "Sorry, This Functionality Has Been Disabled",
+    //                className: 'rubberBand animated'
+    //            });
+    //            //disable key press porcessing
+    //            return false;
+    //        }
+
+    //        if (event.keyCode == 123) {
+    //            bootbox.alert({
+    //                message: "Sorry, This Functionality Has Been Disabled",
+    //                className: 'rubberBand animated'
+    //            });
+
+    //            return false;
+    //        }
+    //    });
+
+    //    //Fire Policy Partial Popup for user Confirmation
+    //    //ConfirmUserPolicy();
+    //});
+
+
+</script>

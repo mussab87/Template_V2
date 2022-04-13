@@ -1,0 +1,64 @@
+﻿
+@model Service.DataLayer.Template.ViewModels.LoginViewModel
+@{ ViewBag.Title = "تسجيل الدخول";
+    Layout = "_LoginLayout"; }
+
+<form method="post" asp-controller="Account" asp-action="Login">
+
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+            <div class="col-lg-6" style="background-color:#fff">
+                <div class="text-center">
+                    <img src="@config["AppSetting:ApplicationLogo"]" style="height:170px;width:200px;margin-top:5%;margin-left:5%" />
+                </div>
+                <div class="p-3">
+                    <div class="text-center">
+
+                        <h1 class="h4 text-primary mb-2" style="font-weight:bold">@config["AppSetting:ApplicationName"]</h1>
+                    </div>
+
+
+                    <div asp-validation-summary="All" class="text-danger" style="direction: rtl;text-align: right;"></div>
+
+                    <div class="form-group">
+                        <input asp-for="Username" placeholder="أسم المستخدم" class="form-control" style="margin-top:5%" />
+                        <span asp-validation-for="Username" class="text-danger" dir="rtl"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Password" placeholder="كلمة المرور" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                        تسجيل الدخول
+                    </button>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+
+    //function submitIt(obj) {
+    //    document.getElementById("Password").value = document.getElementById("tempPasswd").value;
+    //    document.getElementById("tempPasswd").value = "";
+    //    document.getElementById("tempPasswd").type = "text";
+    //    document.getElementById("loginform").submit();
+    //    return true;
+    //}
+
+    //$(document).ready(function () {
+    //    //Remove Local Storage
+    //    debugger;
+    //    if (localStorage.getItem('userConfirmPolicy') != null) {
+    //        //localStorage.removeItem('userConfirmPolicy');
+    //        //localStorage.setItem('userConfirmPolicy', null);
+    //        localStorage.setItem('userConfirmPolicy', '')
+    //    }
+
+    //});
+</script>

@@ -1,0 +1,138 @@
+﻿@if (signInManager.IsSignedIn(User) && User.IsInRole(AppConstants.Role.Names.Admin_Role_Name) || User.IsInRole(AppConstants.Role.Names.User_Role_Name))
+{
+    <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top" style="background-color:#f3f3f3">
+        <a id="DayName"></a>&ensp;<a id="DateNow"></a>
+        @*&ensp;<a id="Countdown"></a>*@
+
+        <div class="navbar-nav mr-auto" style="align-items:center">
+
+
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    <i class="fas fa-bell fa-fw"></i>طلبات النقل
+
+                    @*Counter - Alerts*@
+                    <span class="badge badge-danger badge-counter">50 +</span>
+                </a>
+
+                @*Dropdown - Alerts*@
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="alertsDropdown">
+
+                    <h6 class="dropdown-header">
+                        <h4 style="text-align:center;color:#9d7d24">طلبات النقل </h4>
+                    </h6>
+                    <h5 style="text-align:center">توجدتوجد @*@Context.Session.GetString("TransferCounter")*@ طلبات معلقة</h5>
+
+                    <p><h4 style="text-align:center">لا توجد طلبات</h4></p>}
+
+                    <a class="dropdown-item text-center small text-primary" href="http://10.1.21.38:8080/Transfer">متابعة الطلبات</a>
+
+                </div>
+            </li>
+
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    <i class="fas fa-bell fa-fw"></i>طلبات الاذونات
+
+                    @*Counter - Alerts*@
+                    <span class="badge badge-danger badge-counter">500 +</span>
+                </a>
+
+                @*Dropdown - Alerts*@
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="alertsDropdown">
+
+                    <h6 class="dropdown-header">
+                        <h4 style="text-align:center;color:#9d7d24">طلبات الاذونات</h4>
+                    </h6>
+
+                    <h5 style="text-align:center"> طلبات معلقة</h5>
+
+
+                    <p><h4 style="text-align:center">لا توجد طلبات</h4></p>}
+
+                    <a class="dropdown-item text-center small text-primary" href="http://10.1.21.16/attendance/Default.aspx" target="_blank">إدارة الطلبات</a>
+
+                </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="ml-2 d-none d-lg-inline text-gray-600 small">
+                        @User.Identity.Name
+
+                    </span>
+                    <i class="fas fa-user fa-2x"></i>
+                </a>
+
+                @* Dropdown - User Information*@
+
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="userDropdown">
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
+                        <i class="fas fa-user fa-sm fa-fw ml-2 text-gray-400"></i>
+                        الملف الشخصي
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw ml-2 text-gray-400"></i>
+                        تسجيل خروج
+                    </a>
+                </div>
+            </li>
+        </div>
+    </nav>
+}
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" style="text-align:center">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                @*<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>*@
+                <div class="col" style="text-align:center">
+                    <h3 style="font-weight: bold; color: #9d7d24">@config["AppSetting:ApplicationName"]</h3>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">هل أنت متأكد من تسجيل الخروج من النظام ؟</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">الغاء</button>
+                <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout">
+                    <button id="logout" type="submit" class="btn btn-primary">خروج</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var a = new Date();
+    var weekdays = new Array(7);
+    weekdays[0] = "الاحد";
+    weekdays[1] = "الاثنين";
+    weekdays[2] = "الثلاثاء";
+    weekdays[3] = "الاربعاء";
+    weekdays[4] = "الخميس";
+    weekdays[5] = "الجمعة";
+    weekdays[6] = "السبت";
+    var r = 'اليوم ' + weekdays[a.getDay()];
+    document.getElementById("DayName").innerHTML = r;
+</script>
+
+
+<script>
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    document.getElementById("DateNow").innerHTML = date;
+</script>

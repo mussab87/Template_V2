@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "HTML Element";
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @* Date Render *@
+        <h3>التاريخ الهجري :</h3>
+        <hr />
+        <div class="form-group">
+            <label class="col-md-2">التاريخ هجري :</label>
+            <input type="text" name="StartDate" id="StartDate" class="form-control date col-md-6" autocomplete="off" />
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">التاريخ ميلادي :</label>
+            <input type="text" name="EndDate" id="EndDate" class="form-control date col-md-6" autocomplete="off" />
+        </div>
+
+        @section scripts
+        {
+            <script>
+                $(function () {
+                    var calendar = $.calendars.instance('ummalqura', 'ar');
+
+                    $('#StartDate').calendarsPicker({ calendar: calendar });
+                    $('#EndDate').calendarsPicker();
+                    $('.date').calendarsPicker({ calendar: calendar });
+                });
+            </script>
+        }
+        @* End Date Render *@
+    </div>
+</div>
+
+@*<div class="panel-body">
+    
+    <h3>HTML Code</h3>
+    <hr />
+    
+    
+</div>*@

@@ -1,0 +1,136 @@
+﻿@model Service.DataLayer.Models.Setting;
+@{
+    ViewData["Title"] = "إعدادات النظام";
+}
+
+<form asp-action="AppSetting">
+    <div class="row g-3">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">إعدادات النظام</h6>
+                </div>
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                @if (ViewBag.success != null)
+                {
+                    <b style="color:green;">@ViewBag.success</b>
+                }
+                <div class="row col-12" style="margin-top:15px;margin-bottom:20px">
+                    <div class="col-md-3">
+                        <label asp-for="AccessFailedCount"></label>
+                        <input asp-for="AccessFailedCount" class="form-control" />
+                        <span asp-validation-for="AccessFailedCount" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="UserPasswordLength"></label>
+                        <input asp-for="UserPasswordLength" class="form-control" />
+                        <span asp-validation-for="UserPasswordLength" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="PassRequireDigit"></label>
+                        <select class="form-control" asp-for="PassRequireDigit">
+                            <option value="true"> نعم </option>
+                            <option value="False"> لا </option>
+                        </select>
+                        <span asp-validation-for="PassRequireDigit" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row col-12" style="margin-top:15px;margin-bottom:20px">
+                    <div class="col-md-3">
+                        <label asp-for="PassRequireLowercase"></label>
+                        <select class="form-control" asp-for="PassRequireLowercase">
+                            <option value="true"> نعم </option>
+                            <option value="False"> لا </option>
+                        </select>
+                        <span asp-validation-for="PassRequireLowercase" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="PassRequireUppercase"></label>
+                        <select class="form-control" asp-for="PassRequireUppercase">
+                            <option value="true"> نعم </option>
+                            <option value="False"> لا </option>
+                        </select>
+                        <span asp-validation-for="PassRequireUppercase" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="PassRequireNonAlphanumeric"></label>
+                        <select class="form-control" asp-for="PassRequireNonAlphanumeric">
+                            <option value="true"> نعم </option>
+                            <option value="False"> لا </option>
+                        </select>
+                        <span asp-validation-for="PassRequireNonAlphanumeric" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row col-12" style="margin-top:15px;margin-bottom:20px">
+                    <div class="col-md-3">
+                        <label asp-for="UserSessionTimeOut"></label>
+                        <input asp-for="UserSessionTimeOut" class="form-control" />
+                        <span asp-validation-for="UserSessionTimeOut" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="MaxLimitToLockUser"></label>
+                        <input id='PositionName' asp-for="MaxLimitToLockUser" class="form-control" />
+                        <span asp-validation-for="MaxLimitToLockUser" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="UserConfirmPolicyTitle"></label>
+                        <textarea asp-for="UserConfirmPolicyTitle" class="form-control"></textarea>
+                        <span asp-validation-for="UserConfirmPolicyTitle" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row col-12" style="margin-top:15px;margin-bottom:20px">
+                    <div class="col-md-3">
+                        <label asp-for="UserConfirmPolicy"></label>
+                        <textarea asp-for="UserConfirmPolicy" class="form-control"></textarea>
+                        <span asp-validation-for="UserConfirmPolicy" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="ApplicationName"></label>
+                        <input id='PositionName' asp-for="ApplicationName" class="form-control" />
+                        <span asp-validation-for="ApplicationName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="ApplicationLogo"></label>
+                        <input asp-for="ApplicationLogo" class="form-control" />
+                        <span asp-validation-for="ApplicationLogo" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row col-12" style="margin-top:15px;margin-bottom:20px">
+                    <div class="col-md-3">
+                        <label asp-for="EmpDataApiUrl"></label>
+                        <input asp-for="EmpDataApiUrl" class="form-control" />
+                        <span asp-validation-for="EmpDataApiUrl" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="EnableConfirmPolicy"></label>
+                        <select class="form-control" asp-for="EnableConfirmPolicy">
+                            <option value="true"> نعم </option>
+                            <option value="False"> لا </option>
+                        </select>
+                        <span asp-validation-for="EnableConfirmPolicy" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="EnableRightClick"></label>
+                        <select class="form-control" asp-for="EnableRightClick">
+                            <option value="true"> نعم </option>
+                            <option value="False"> لا </option>
+                        </select>
+                        <span asp-validation-for="EnableRightClick" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <input type="submit" value="حفظ" class="btn btn-primary" />
+                </div>
+                <br /><br /><br /><br />
+            </div>
+        </div>
+    </div>
+</form>
+

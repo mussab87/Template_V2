@@ -1,0 +1,342 @@
+﻿
+@{
+    ViewBag.Title = "الرئيسية";
+}
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">إدارة المستخدمين</h6>
+
+            </div>
+            <br />
+            @if (signInManager.Context.User.IsInRole(AppConstants.Role.Names.Admin_Role_Name))
+            {
+                <div class="row col-12">
+                    <div class="col-sm-2 mb-5">
+                        <a asp-controller="AttendanceLog" asp-route-Id="5" asp-action="index" class="" title="عرض التفاصيل">
+                            <div class="card border-left-primary shadow h-100 py-2">
+
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+
+                                        <div class="col ml-2">
+                                            <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1" style="font-size:15px">
+                                                التعداد الفعلي
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">400</div>
+                                            <input type="hidden" value="200" id="AllEmp" />
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-users fa-2x text-gray-300"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="col-sm-2 mb-5">
+                        <a asp-controller="AttendanceLog" asp-route-Id="1" asp-action="index" class="" title="عرض التفاصيل">
+                            <div class="card border-left-primary shadow h-100 py-2">
+
+
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+
+                                        <div class="col ml-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="font-size:15px">
+                                                حاضر
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">800</div>
+                                            <input type="hidden" value="800" id="Present" />
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-clock fa-2x text-gray-300"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <div class="col-sm-2 mb-5">
+                        <a asp-controller="AttendanceLog" asp-route-Id="2" asp-action="index" class="" title="عرض التفاصيل">
+
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col ml-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1" style="font-size:15px">
+                                                متأخر
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">700</div>
+                                            <input type="hidden" value="700" id="Late" />
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users-slash fa-2x text-gray-300"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-2 mb-5">
+                        <a asp-controller="AttendanceLog" asp-route-Id="3" asp-action="index" class="" title="عرض التفاصيل">
+
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col ml-2">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="font-size:15px;color:chocolate">
+                                                لم يوقع دخول
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">850</div>
+                                            <input type="hidden" value="850" id="NotCome" />
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-car-alt fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-2 mb-5">
+                        <a asp-controller="AttendanceLog" asp-route-Id="4" asp-action="index" class="" title="عرض التفاصيل">
+
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col ml-2">
+                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1" style="font-size:15px">
+                                                مستأذن
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 ml-3 font-weight-bold text-gray-800">100</div>
+                                                    <input type="hidden" value="100" id="Authorized" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-id-card fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-2 mb-5">
+                        <a asp-controller="AttendanceLog" asp-route-Id="6" asp-action="index" class="" title="عرض التفاصيل">
+
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col ml-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="font-size:15px">
+                                                اجازة
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 ml-3 font-weight-bold text-gray-800">600</div>
+                                                    <input type="hidden" value="600" id="Vacation" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-shield fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                </div>
+            }
+            </div>
+            
+
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">رسم بياني</h6>
+                    </div>
+                    <div class="row">
+                        <div class="chart-bar">
+                            <canvas id="myBarChart"></canvas>
+                        </div>
+                        @*<hr>
+                            Styling for the bar chart can be found in the
+                            <code>/js/demo/chart-bar-demo.js</code> file.*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">رسم بياني</h6>
+                    </div>
+                    <div class="row">
+                        <div class="chart-bar">
+                            <canvas id="myAreaChart"></canvas>
+                        </div>
+                        @*<hr>
+                            Styling for the bar chart can be found in the
+                            <code>/js/demo/chart-bar-demo.js</code> file.*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">رسم بياني</h6>
+                    </div>
+                    <div class="row">
+                        <div class="chart-bar">
+                            <canvas id="myPieChart"></canvas>
+                        </div>
+                        @*<hr>
+                            Styling for the bar chart can be found in the
+                            <code>/js/demo/chart-bar-demo.js</code> file.*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    @*<div class="loader"></div>*@
+
+
+
+
+
+@section Scripts
+{
+    <script>$(document).ready(function () {
+            if (localStorage.getItem("HasLoadBefore") == "false") {
+                localStorage.setItem("HasLoadBefore", true);
+
+                //NToast(
+                //    "#9d7d24",
+                //    "tl",
+                //    "الخدمات والمميزات الجديدة في نظام البصمة 2",
+                //    true,
+                //    "fas fa-fingerprint",
+                //    true,
+                //    300,
+                //)
+                NToast(
+                    "#7b81c3",
+                    "tl",
+                    "جديد : تقرير الحضور والانصراف حسب تاريخ",
+                    true,
+                    "fa fa-info",
+                    true,
+                    300,
+                )
+                NToast(
+                    "#4f947b",
+                    "tl",
+                    "جديد : تقرير الرسم البياني حسب تاريخ",
+                    true,
+                    "fa fa-info",
+                    true,
+                    300,
+                )
+                //NToast(
+                //    "#0072c6",
+                //    "tl",
+                //    "خدمة أضافة وتحديث الاجازة وقائمة الايجازات",
+                //    true,
+                //    "fa fa-info",
+                //    true,
+                //    300,
+                //)
+                NToast(
+                    "#ca8ba9",
+                    "tl",
+                    "جديد : تقرير سجل الحضور لموظف حسب فترة",
+                    true,
+                    "fa fa-info",
+                    true,
+                    300,
+                )
+                NToast(
+                    "#2c9dad",
+                    "tl",
+                    "جديد : تقرير الاذونات حسب قسم او موظف",
+                    true,
+                    "fa fa-info",
+                    true,
+                    300,
+                )
+                NToast(
+                    "#d67320",
+                    "tl",
+                    "جديد : تقرير الايجازات حسب قسم او موظف",
+                    true,
+                    "fa fa-info",
+                    true,
+                    300,
+                )
+                //NToast(
+                //    "#2c9dad",
+                //    "tl",
+                //    "خدمة إعادة كلمة المرور لنظام الإستئذان",
+                //    true,
+                //    "fa fa-info",
+                //    true,
+                //    300,
+                //)
+                //NToast(
+                //    "#d67320",
+                //    "tl",
+                //    "الإيجازات الإكترونية تسجل بشكل آلي في النظام",
+                //    true,
+                //    "fa fa-info",
+                //    true,
+                //    300,
+                //)
+                NToast(
+                    "#ad3879",
+                    "tl",
+                    "يرجى من مشرفي النظام منح الصلاحيات للمستخدمين",
+                    true,
+                    "fa fa-info",
+                    true,
+                    300,
+                )
+            }
+
+        }
+        );</script>
+}
+
+
+
+

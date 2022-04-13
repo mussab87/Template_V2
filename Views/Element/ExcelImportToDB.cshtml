@@ -1,0 +1,28 @@
+﻿@model Template.Models.SingleFileModel
+@{
+    ViewBag.Title = "HTML Element";
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form asp-action="Upload" asp-controller="Element" method="post" enctype="multipart/form-data">
+            @* Date Render *@
+            <h3>التاريخ الهجري :</h3>
+            <hr />
+            <div class="form-group">
+                <label class="col-form-label">اسم الملف</label>
+                <input asp-for="FileName" class="form-control" />
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2"> ملف اكسل :</label>
+                <input asp-for="File" class="form-control" />
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn " style="margin-left: 6px;" id="deletep">  حفظ الملف  </button>
+            </div>
+        </form>
+      
+    </div>
+</div>

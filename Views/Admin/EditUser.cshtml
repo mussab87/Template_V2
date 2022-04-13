@@ -1,0 +1,248 @@
+﻿
+@model Service.DataLayer.Template.ViewModels.EditUserViewModel
+
+@{ ViewBag.Title = "AccountForm";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ ViewBag.Title = "تحديث  مستخدم";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+
+
+<h2 style="text-align:right">تحديث مستخدم</h2>
+<br />
+<div id="PlaceHolderHereUser"></div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"> تحديث بيانات مستخدم</h6>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col mr-9">
+            <form asp-controller="Admin" asp-action="EditUser" a class="row g-3" method="post">
+
+                <div class="row col-12">
+                    <div class="col-md-3">
+                        <div asp-validation-summary="All" class="text-danger" style="direction: rtl;text-align: right;"></div>
+                    </div>
+
+                </div>
+                <div class="row col-12">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="UserName"></label>
+                        <input id="EmployeeName" class="form-control" asp-for="UserName">
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row col-12" style="margin-top:50px">
+                    <div class="col-3"></div>
+                    <div class="col-3">
+                        <button id="submit" type="submit" class="btn btn-primary form-control">
+                            حفظ
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <a asp-controller="Employee" asp-action="Index" class="btn btn-outline-danger form-control">الغاء</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </form>
+            
+
+        </div>
+    </div>
+</div>
+
+@* ----------صلاحيات الحساب------------ *@
+<div id="PlaceHolderHereUser"></div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"> صلاحيات الحساب</h6>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col mr-9">
+
+            <div class="p-2">
+                <div class="panel panel-default">
+                    <div class="panel-body mr-3 mb-3">
+                        @if (Model.Roles.Any())
+                        {
+                            foreach (var role in Model.Roles)
+                            {
+                                <button class="btn btn-info">
+                                    @role
+                                </button> @*<h5 class="card-title">@role</h5>*@ }
+                        }
+                        else
+                        {
+                            <h5 class="card-title">لايوجد صلاحيات المستخدم</h5>}
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addRole"
+                                data-url="@Url.Action($"ManageUserRoles/{Model.Id}")">
+                            إدارة الصلاحيات
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@* ------------------------------------- *@
+
+@* ----------صلاحيات اجزاء النظام------------ *@
+<div id="PlaceHolderHereUser"></div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"> صلاحيات اجزاء وشاشات النظام</h6>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col mr-9">
+
+            <div class="p-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>الصلاحيات </h2>
+                    </div>
+
+                    <div class="panel-body">
+                        @if (Model.Claims.Any())
+                        {
+                            foreach (var claim in Model.Claims)
+                            {
+                                <p class="btn btn-info">
+                                    @claim
+                                </p> @*<h5 class="card-title">@claim</h5>*@ }
+                        }
+                        else
+                        {
+                            <h5 class="card-title">لايوجد صلاحيات لهذا المستخدم</h5>}
+
+                    </div>
+                    <div class="form-group col-md-12">
+                        <a asp-action="ManageUserClaims" asp-route-userId="@Model.Id"
+                           style="width:auto" class="btn btn-primary">
+                            إدارة أجزاء النظام
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@* ------------------------------------- *@
+
+
+<div class="card shadow mb-4 ">
+    <div class="card-header py-2">
+        <h6 class="m-0 font-weight-bold text-primary">ملاحضة :</h6>
+        <ul>
+            <li>
+                يمكن اضافة ملاحظات هنا
+
+
+
+            </li>
+            <li>
+                يمكن اضافة ملاحظات هنا
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+            $(document).ready(function () {
+                var Message = '@TempData["Message"]';
+                if (Message == 1) {
+                    NToast(
+                        "#1ea244",
+                        "tl",
+                        "تم الحفظ بنجاح",
+                        true,
+                        "fa fa-save",
+                        true,
+                        100,
+                    )
+                }
+                if (Message == 2) {
+                    NToast(
+                        "#1ea244",
+                        "tl",
+                        "تم التحديث بنجاح",
+                        true,
+                        "fa fa-check",
+                        true,
+                        100,
+                    )
+                }
+                if (Message == 3) {
+                    NToast(
+                        "#1ea244",
+                        "tl",
+                        "تم الحذف بنجاح",
+                        true,
+                        "fa fa-trash",
+                        true,
+                        100,
+                    )
+                }
+                if (Message == 4) {
+                    NToast(
+                        "#e4483d",
+                        "tl",
+                        "لا يمكن الحذف لارتباطه في بيانات أخرى",
+                        true,
+                        "fa fa-info",
+                        true,
+                        100,
+                    )
+                }
+                if (Message == 5) {
+                    NToast(
+                        "#e4483d",
+                        "tl",
+                        "حدث خطاءغير معروف يرجى التواصل مع مدير النظام",
+                        true,
+                        "fa e-fe-access-error",
+                        true,
+                        100,
+                    )
+                }
+                if (Message == 6) {
+                    NToast(
+                        "#D74323",
+                        "tl",
+                        "هذا الموظف موجود مسبقا",
+                        true,
+                        "fa e-fe-access-error",
+                        true,
+                        100,
+                    )
+                }
+            });
+
+    </script>
+
+
+}
+<script src="~/js/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>
+
