@@ -35,6 +35,11 @@ namespace Template.Controllers
             return View();
         }
 
+        public IActionResult Portal()
+        {
+            return View();
+        }
+
         public IActionResult ExcelImportToDB()
         {
             SingleFileModel model = new SingleFileModel();

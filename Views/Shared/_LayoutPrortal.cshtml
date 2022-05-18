@@ -1,0 +1,245 @@
+﻿@using Template.Models;
+@{ 
+     
+    //var setting = SessionHelper.GetObjectFromJson<Setting>(session, "settingObject");
+}
+<!DOCTYPE html>
+<html lang="ar">
+<partial name="_HeaderPartial" />
+<body lang="ar" style="direction: rtl;">
+   
+    <div id="wrapper">
+
+        <partial name="_Menu.cshtml" />
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <partial name="_LoginPartial.cshtml" />
+                @*<partial name="_NavBar" />*@
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                @RenderSection("ControlsSection", required: false)
+                <ejs-scripts></ejs-scripts>
+
+                <footer class="border-top footer text-center" style="background-color:white">
+                    <p style="height:30px">- @config["AppSetting:ApplicationName"] - &copy; جميع الحقوق محفوظة القوات البرية الملكية السعودية - @DateTime.Now.Year </p>
+                    <p> تم تصميم و برمجة النظام في مركز تطوير النظم - إدارة تقنية المعلومات بالقوات البرية</p>
+                </footer>
+            </div>
+
+           
+        </div>
+    </div>
+    @*<div class="container body-content">
+            @RenderBody()
+            <hr />
+            <div class="col-md-12">
+                <footer>
+                    <p>- @AppConstants.LayOut.Config.ApplicationName - &copy; جميع الحقوق محفوظة ................ @DateTime.Now.Year </p>
+                </footer>
+            </div>
+        </div>*@
+
+    <partial name="_ScriptExtenstions" />
+
+    @RenderSection("scripts", false)
+
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        //Fire Policy Partial Popup for user Confirmation
+        var selectedValue = @config["AppSetting:EnableConfirmPolicy"];
+        if (selectedValue == true) {
+            ConfirmUserPolicy();
+        }
+
+
+        //Alert popup********************************************
+        AlertPopup();
+        //*******************************************************
+        var selectedValue2 = @config["AppSetting:EnableRightClick"];
+        if (selectedValue2 == true) {
+            //DISABLE right click
+            jQuery(this).bind("contextmenu", function (event) {
+                event.preventDefault();
+                bootbox.alert({
+                    message: "Sorry, This Functionality Has Been Disabled",
+                    className: 'rubberBand animated'
+                });
+            });
+
+            //disable Ctr + U + F12
+            $(document).keydown(function (event) {
+                var pressedKey = String.fromCharCode(event.keyCode).toLowerCase();
+                debugger;
+                if (event.ctrlKey && (pressedKey == "c" || pressedKey == "u" || pressedKey == "v")) {
+                    //alert('Sorry, This Functionality Has Been Disabled!');
+                    bootbox.alert({
+                        message: "Sorry, This Functionality Has Been Disabled",
+                        className: 'rubberBand animated'
+                    });
+                    //disable key press porcessing
+                    return false;
+                }
+
+                if (event.keyCode == 123) {
+                    bootbox.alert({
+                        message: "Sorry, This Functionality Has Been Disabled",
+                        className: 'rubberBand animated'
+                    });
+
+                    return false;
+                }
+            });
+        }
+
+
+
+
+        $('.datepicker').datepicker({ format: 'dd-mm-yyyy' });
+
+
+        var table = $('#tbl');
+
+        table.DataTable({
+            sort: false,
+            dom: 'Bfrtip',
+            fixedColumns: false,
+            //buttons: [
+            //    'excel', 'print'
+            //],
+            buttons: [
+                { extend: 'excel', text: 'تصدير إكسل' },
+                {
+                    extend: 'print', text: 'طباعة',
+                    customize: function (win) {
+                        win.document.body.style.direction = "rtl";
+                        $(win.document.body).find('h1').css('font-size', '15pt');
+                        $(win.document.body)
+                            .prepend('<div style="text-align:center"><img src="http://10.1.21.38:8080/img/logo.png" style="height:175px;width:200px" /></div>');
+
+                    }
+                }
+            ],
+            responsive: true,
+            lengthMenu: [5, 10, 25, 50],
+            pageLength: 25,
+            // Order settings
+            language: {
+                infoEmpty: "عرض 0 إلى صفر من 0",
+                search: "البحث:",
+                "info": "عرض صفحة _PAGE_ من _PAGES_",
+                "lengthMenu": "عرض _MENU_ سجل",
+                "paginate": {
+                    "first": "الاولى",
+                    "next": "التالي",
+                    "previous": "السابق",
+                    "last": "الأخير"
+                }
+            }
+        });
+    });
+
+    function AlertPopup() {
+        //set value to TempData["Message"]
+      @*'@TempData["Message"]'*@
+        var Message = 2;
+        if (Message == 1) {
+            NToast(
+                "#1ea244",
+                "tl",
+                "تم الحفظ بنجاح",
+                true,
+                "fa fa-save",
+                true,
+                100,
+            )
+        }
+        if (Message == 2) {
+            NToast(
+                "#1ea244",
+                "tl",
+                "تم التحديث بنجاح",
+                true,
+                "fa fa-check",
+                true,
+                100,
+            )
+        }
+        if (Message == 3) {
+            NToast(
+                "#1ea244",
+                "tl",
+                "تم الحذف بنجاح",
+                true,
+                "fa fa-trash",
+                true,
+                100,
+            )
+        }
+        if (Message == 4) {
+            NToast(
+                "#e4483d",
+                "tl",
+                "لا يمكن الحذف لارتباطه في بيانات أخرى",
+                true,
+                "fa fa-info",
+                true,
+                100,
+            )
+        }
+        if (Message == 5) {
+            NToast(
+                "#e4483d",
+                "tl",
+                "حدث خطاءغير معروف يرجى التواصل مع مدير النظام",
+                true,
+                "fa e-fe-access-error",
+                true,
+                100,
+            )
+        }
+        if (Message == 6) {
+            NToast(
+                "#D74323",
+                "tl",
+                "هذا الموظف موجود مسبقا",
+                true,
+                "fa e-fe-access-error",
+                true,
+                100,
+            )
+        }
+    }
+
+    function ConfirmUserPolicy() {
+        debugger;
+        if (localStorage.getItem('userConfirmPolicy') == null || localStorage.getItem('userConfirmPolicy') == '') {
+            bootbox.confirm({
+                title: "@config["AppSetting:UserConfirmPolicyTitle"]",
+                message: "@config["AppSetting:UserConfirmPolicy"]",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> إلغاء'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> موافق'
+                    }
+                },
+                callback: function (result) {
+                    console.log('This was logged in the callback: ' + result);
+                    if (result != false) {
+                        localStorage.setItem('userConfirmPolicy', "true");
+                    }
+                    else {
+                        ConfirmUserPolicy();
+                    }
+
+
+                }
+            });
+        }
+
+    }
+</script>
